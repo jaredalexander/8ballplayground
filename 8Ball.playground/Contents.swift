@@ -33,12 +33,12 @@ func pickRandomPhrase()->String{
 }
 
 //this is the parent view that holds the other views
-let container = createContainer()
+let container = createContainer(400)
 
 //create our UI components
-let eightBall = createEightBallImage("ball.png")
-let phraseLabel = createPhraseLabel()
-let shakeButton = createShakeButton("Shake!")
+let eightBall = createEightBallImage("ball.png", forContainer: container)
+let phraseLabel = createPhraseLabel(forContainer: container)
+let shakeButton = createShakeButton("Shake!", forContainer: container)
 
 //add the phrase label to the eight ball image
 eightBall.addSubview(phraseLabel)
