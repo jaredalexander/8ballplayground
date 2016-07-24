@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-// Ratio of eight ball to container frame
+// Ratios to ensure that UI components look right no matter the width/height dimension of the parent container
 let eightBallRatio: CGFloat = 0.875
 let fontSizeRatio: CGFloat = 0.05
 
@@ -11,14 +11,14 @@ let buttonHeightRatio: CGFloat = 0.2
 let labelWidthRatio: CGFloat = 0.3
 let labelHeightRatio: CGFloat = 0.3
 
-public func createContainer(size:Int)->UIView{
+public func createContainer(withSize size:Int)->UIView{
     let view = UIView(frame: CGRectMake(0,0,CGFloat(size),CGFloat(size)))
     view.backgroundColor = .whiteColor()
     
     return view
 }
 
-public func createShakeButton(title:String, forContainer container: UIView)->UIButton{
+public func createShakeButton(title title:String, forContainer container: UIView)->UIButton{
     let containerSize = container.frame.width;
     
     let buttonWidth:CGFloat = containerSize * buttonWidthRatio
@@ -31,7 +31,7 @@ public func createShakeButton(title:String, forContainer container: UIView)->UIB
     return button
 }
 
-public func createEightBallImage(imageFileName:String, forContainer container: UIView)->UIImageView{
+public func createEightBallImage(fileName imageFileName:String, forContainer container: UIView)->UIImageView{
     let containerSize = container.frame.width;
     
     let eightBallWidth:CGFloat = containerSize * eightBallRatio
@@ -51,7 +51,6 @@ public func createPhraseLabel(forContainer container: UIView)->UILabel{
     let labelHeight:CGFloat = eightBallWidth * labelHeightRatio
     
     let label = UILabel(frame: CGRectMake((eightBallWidth - labelWidth)/2,(eightBallWidth - labelHeight)/2,labelWidth,labelHeight))
-    label.text = "Things look good!"
     label.textAlignment = .Center
     label.textColor = .whiteColor()
     label.numberOfLines = 0

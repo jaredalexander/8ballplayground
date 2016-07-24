@@ -28,17 +28,17 @@ let phrases = ["It is certain",
 
 //random phrase picker
 func pickRandomPhrase()->String{
-    let randomIndex = randomNumberBetween(start:0,end: phrases.count)
+    let randomIndex = randomNumberBetween(start:0, end: phrases.count)
     return phrases[randomIndex]
 }
 
-//this is the parent view that holds the other views
-let container = createContainer(400)
+//create a parent view container that holds the other views
+let container = createContainer(withSize: 400)
 
-//create our UI components
-let eightBall = createEightBallImage("ball.png", forContainer: container)
+//create our child UI components
+let eightBall = createEightBallImage(fileName: "ball.png", forContainer: container)
 let phraseLabel = createPhraseLabel(forContainer: container)
-let shakeButton = createShakeButton("Shake!", forContainer: container)
+let shakeButton = createShakeButton(title: "Shake!", forContainer: container)
 
 //add the phrase label to the eight ball image
 eightBall.addSubview(phraseLabel)
@@ -47,32 +47,31 @@ eightBall.addSubview(phraseLabel)
 container.addSubview(eightBall)
 container.addSubview(shakeButton)
 
-container
-
 //interactivity:
 
-func shakeEightBall(){
-    eightBall.shake()
-    wait(1.0){
-        let phrase = pickRandomPhrase()
-        phraseLabel.text = phrase
-        phraseLabel.hidden = false
-        
-        speak(phrase)
-    }
-}
-
-//define a resopnder that reacts to a button press
+//define a responder that reacts to a button press
 class Responder : NSObject {
     func buttonPressed() {
-        shakeEightBall()
+        //shake the eight ball
+        shakeView(eightBall)
+        
+        //after a brief delay, set the text on the label and speak it!
+        wait(1.0){
+            //configure phrase
+            let phrase = pickRandomPhrase()
+            phraseLabel.text = phrase
+            phraseLabel.hidden = false
+            
+            //speak phrase
+            speak(phrase)
+        }
     }
 }
 
 //instantiate a responder
 let responder = Responder()
 
-//create a button to shake the 8 ball and pick a phrase when pressed
+//add a button target to shake the 8 ball and pick a phrase when pressed
 shakeButton.addTarget(responder, action: #selector(Responder.buttonPressed), forControlEvents: .TouchUpInside)
 
 //make the container interactive and previewable

@@ -25,3 +25,10 @@ public func randomNumberBetween(start start:Int,end:Int)->Int{
     return num
 }
 
+public func shakeView(view:UIView) {
+    let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+    animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+    animation.duration = 1.0
+    animation.values = [-30.0, 30.0, -30.0, 30.0,-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
+    view.layer.addAnimation(animation, forKey: "shake")
+}
