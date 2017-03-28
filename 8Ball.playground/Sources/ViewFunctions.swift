@@ -12,21 +12,21 @@ let labelWidthRatio: CGFloat = 0.3
 let labelHeightRatio: CGFloat = 0.3
 
 public func createContainer(withSize size:Int)->UIView{
-    let view = UIView(frame: CGRectMake(0,0,CGFloat(size),CGFloat(size)))
-    view.backgroundColor = .whiteColor()
+    let view = UIView(frame: CGRect(x:0,y: 0,width: CGFloat(size), height: CGFloat(size)))
+    view.backgroundColor = .white
     
     return view
 }
 
-public func createShakeButton(title title:String, forContainer container: UIView)->UIButton{
+public func createShakeButton(title:String, forContainer container: UIView)->UIButton{
     let containerSize = container.frame.width;
     
     let buttonWidth:CGFloat = containerSize * buttonWidthRatio
     let buttonHeight:CGFloat = containerSize * buttonHeightRatio
     
-    let button = UIButton(frame: CGRectMake((containerSize - buttonWidth)/2, containerSize + 10 - buttonHeight,buttonWidth,buttonHeight))
-    button.setTitle(title, forState: .Normal)
-    button.setTitleColor(.blackColor(), forState: .Normal)
+    let button = UIButton(frame: CGRect(x: (containerSize - buttonWidth)/2, y: containerSize + 10 - buttonHeight,width: buttonWidth, height: buttonHeight))
+    button.setTitle(title, for: .normal)
+    button.setTitleColor(.black, for: .normal)
     button.titleLabel?.adjustsFontSizeToFitWidth = true
     return button
 }
@@ -37,7 +37,7 @@ public func createEightBallImage(fileName imageFileName:String, forContainer con
     let eightBallWidth:CGFloat = containerSize * eightBallRatio
     let eightBallHeight:CGFloat = containerSize * eightBallRatio
 
-    let eightBall = UIImageView(frame: CGRectMake((containerSize-eightBallWidth)/2,(containerSize-eightBallHeight)/2,eightBallWidth,eightBallHeight))
+    let eightBall = UIImageView(frame: CGRect(x: (containerSize-eightBallWidth)/2, y: (containerSize-eightBallHeight)/2, width: eightBallWidth, height: eightBallHeight))
     eightBall.image = UIImage(named: imageFileName)
     return eightBall
 }
@@ -50,11 +50,11 @@ public func createPhraseLabel(forContainer container: UIView)->UILabel{
     let labelWidth:CGFloat = eightBallWidth * labelWidthRatio
     let labelHeight:CGFloat = eightBallWidth * labelHeightRatio
     
-    let label = UILabel(frame: CGRectMake((eightBallWidth - labelWidth)/2,(eightBallWidth - labelHeight)/2,labelWidth,labelHeight))
-    label.textAlignment = .Center
-    label.textColor = .whiteColor()
+    let label = UILabel(frame: CGRect(x: (eightBallWidth - labelWidth)/2,y: (eightBallWidth - labelHeight)/2, width: labelWidth, height: labelHeight))
+    label.textAlignment = .center
+    label.textColor = .white
     label.numberOfLines = 0
-    label.hidden = true
+    label.isHidden = true
     label.font = UIFont(name: label.font!.fontName, size: fontSizeRatio * eightBallWidth)
     
     return label

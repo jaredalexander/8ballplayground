@@ -34,17 +34,17 @@ container.addSubview(shakeButton)
 class Responder : NSObject {
     func buttonPressed() {
         //shake the eight ball
-        shakeView(eightBall)
+        shakeView(view: eightBall)
         
         //after a brief delay, set the text on the label and speak it!
-        wait(1.0){
+        wait(delay: 1.0){
             //configure phrase
             let phrase = pickRandomPhrase()
             phraseLabel.text = phrase
-            phraseLabel.hidden = false
+            phraseLabel.isHidden = false
             
             //speak phrase
-            speak(phrase)
+            speak(text: phrase)
         }
     }
 }
@@ -53,7 +53,7 @@ class Responder : NSObject {
 let responder = Responder()
 
 //add a button target to shake the 8 ball and pick a phrase when pressed
-shakeButton.addTarget(responder, action: #selector(Responder.buttonPressed), forControlEvents: .TouchUpInside)
+shakeButton.addTarget(responder, action: #selector(Responder.buttonPressed), for: .touchUpInside)
 
 //make the container interactive and previewable
 XCPlaygroundPage.currentPage.liveView = container
